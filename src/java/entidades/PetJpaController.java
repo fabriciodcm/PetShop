@@ -125,6 +125,21 @@ public class PetJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public List<Pet> findPetByDonoId(Integer id) {
+        EntityManager em = getEntityManager();
+        try {
+            //CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            //cq.select(cq.from(Pet.class));
+            //Query query1 = em.createQuery(cq);
+            Query query = em.createQuery("Select p from Pet p where p.idDono=:arg1");
+            query.setParameter("arg1", id);
+            return query.getResultList();
+             
+        } finally {
+            em.close();
+        }
+    }
 
     public int getPetCount() {
         EntityManager em = getEntityManager();

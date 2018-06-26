@@ -14,14 +14,14 @@
     <body>
         <h1>Hello World!</h1>
         <% 
-        //entidades.Dono dono = new entidades.Dono();
-        //dono.setEmail("fabricio.docema@gmail.com");
-        //dono.setNome("Fabricio Docema");
-        //dono.setTelefone("3533-3333");
+        entidades.Dono dono = new entidades.Dono();
+        dono.setEmail("fabricio.docema@gmail.com");
+        dono.setNome("Fabricio Docema");
+        dono.setTelefone("3533-3333");
         entidades.DonoJpaController controller = new entidades.DonoJpaController();
-        //controller.create(dono);
+        controller.create(dono);
         
-        entidades.Dono dono = controller.findDono(1);
+        dono = controller.findDono(1);
         
         entidades.Pet pet = new entidades.Pet();
         pet.setCaracteristicas("Pelo braco e vermelho, agitada");
