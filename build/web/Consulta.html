@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="form">
+            <form name="cadastro_consulta">
+                Selecione o dono:
+                <select name="idDono" id="dono">
+                </select>
+                
+            </form>
+            
+        <div>
+        <script>
+            $(document).ready(function(){
+                preencheDonos();
+            });
+            function preencheDonos (){
+                var url = "http://localhost:8084/Donos.jsp";
+                if(window.XMLHttpRequest){
+                    req =  new XMLHttpRequest();
+                }else if(window.ActiveXObject){
+                    var req =  new ActiveXObject("Microsoft.XMLHTTP");
+                }req.onreadystatechange = function (){
+                    if(this.readyState == 4){
+                        if(this.status == 200){
+                            var donos = JSON.parse(this.responseText);
+                            var input_dono = document.getElementById("dono");
+                            for (var j = 0; j < donos.length; j++){
+                                $("#dono").append('<option value="' + donos[j].idDono + '" >' + donos[j].nome + '</option>');
+                            }
+                        }
+                    }
+                };
+                req.open("GET",url);
+                req.send(null);                
+            }
+        </script>
+    </body>
+</html>

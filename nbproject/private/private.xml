@@ -5,11 +5,15 @@
         <group>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/src/java/entidades/PetJpaController.java</file>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/src/java/entidades/Pet.java</file>
+            <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/web/Consulta.html</file>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/src/java/entidades/DonoJpaController.java</file>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/src/conf/MANIFEST.MF</file>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/src/java/entidades/Dono.java</file>
+            <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/web/Pets.jsp</file>
+            <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/web/Donos.jsp</file>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/web/index.jsp</file>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/src/java/entidades/ConsultaJpaController.java</file>
             <file>file:/C:/Users/fa_do/Documents/NetBeansProjects/PetShop2.0/web/WEB-INF/web.xml</file>
         </group>
     </open-files>

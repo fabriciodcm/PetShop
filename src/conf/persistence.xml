@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entidades.Dono</class>
     <class>entidades.Pet</class>
+    <class>entidades.Consulta</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/my_petshop?zeroDateTimeBehavior=convertToNull"/>
