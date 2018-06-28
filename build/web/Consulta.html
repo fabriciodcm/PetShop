@@ -10,35 +10,114 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <div>TODO write content</div>
-        <div id="form">
-            <form name="cadastro_consulta">
-                Selecione o dono:
-                <select name="idDono" id="dono">
-                </select>
+        <div class="formulario">
+            <div id="form" >
                 
-            </form>
+                <form name="cadastro_consulta" id="formoid" action="studentFormInsert.php" title="" method="post">
+                    <h1>Formulário</h1>
+                    Selecione o dono:
+                    <br>
+                    <select name="idDono" id="dono">
+                    </select>
+                    <br>
+                    Selecione o Pet
+                    <br>
+                    <select name="idPet" id="pet">
+                    </select>
+                    <br>
+                    Insira a descrição:
+                    <br>
+                    <input type="text" id="descricao" name="descricao">
+                    <br>
+                    Insira a data:
+                    <br>
+                    <input type="date" id="data" name="Data">
+                    <br>
+                    <input type="submit" id="submitButton"  name="submitButton" value="Enviar">
+                </form>
+            <div>
+            </div>
+            <div id="imagem">
+             <img src="http://blogs.correiobraziliense.com.br/maisbichos/wp-content/uploads/sites/7/2017/08/IMG_0614.jpg"/>
+            </div>
+        </div>
             
-        <div>
-        <script>
+            
+            
+<script type='text/javascript'>
+    
+            var url_base ="http://localhost:8084/";
+    
             $(document).ready(function(){
                 preencheDonos();
+                preenchePets();
             });
+    
+            /* attach a submit handler to the form */
+            $("#formoid").submit(function(event) {
+
+                /* stop form from submitting normally */
+                event.preventDefault();
+
+                /* get the action attribute from the <form action=""> element */
+                var $form = $( this ),
+                url = $form.attr( 'action' );
+
+                /* Send the data using post with element id name and name2*/
+                var posting = $.post( enviar.jsp, { idDono: $('#dono').val(), idPets: $('#pets').val(), descricao: $('#descricao').val(), Data: $('#data').val() } );
+
+                /* Alerts the results */
+                posting.done(function( data ) {
+                    alert('success');
+                });
+            });
+
+            
             function preencheDonos (){
-                var url = "http://localhost:8084/Donos.jsp";
+                var url = url_base + "Donos.jsp";
                 if(window.XMLHttpRequest){
                     req =  new XMLHttpRequest();
                 }else if(window.ActiveXObject){
                     var req =  new ActiveXObject("Microsoft.XMLHTTP");
-                }req.onreadystatechange = function (){
+                }
+                req.onreadystatechange = function (){
                     if(this.readyState == 4){
                         if(this.status == 200){
                             var donos = JSON.parse(this.responseText);
                             var input_dono = document.getElementById("dono");
                             for (var j = 0; j < donos.length; j++){
-                                $("#dono").append('<option value="' + donos[j].idDono + '" >' + donos[j].nome + '</option>');
+                                //$("#dono").append('<option value="' + donos[j].idDono + '" >' + donos[j].nome + '</option>');
+                                document.getElementById("dono").innerHTML += ('<option value="' + donos[j].idDono + '" >' + donos[j].nome + '</option>');
+                            }
+                        }
+                    }
+                };
+                req.open("GET",url);
+                req.send(null);                
+            }
+        
+            function preenchePets (){
+                var e = document.getElementById("dono");
+                var pet = e.options[e.selectedIndex].value;
+                alert(pet);
+                var url = url_base + "Pets.jsp?idDono=" + pet ;
+                
+                if(window.XMLHttpRequest){
+                    req =  new XMLHttpRequest();
+                }else if(window.ActiveXObject){
+                    var req =  new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                req.onreadystatechange = function (){
+                    if(this.readyState == 4){
+                        if(this.status == 200){
+                            var pets = JSON.parse(this.responseText);
+                            var input_pet = document.getElementById("pet");
+                            
+                            for (var j = 0; j < pets.length; j++){
+                                $("#pet").append('<option value="' + pets[j].idPet + '" >' + pets[j].nome + '</option>');
                             }
                         }
                     }
