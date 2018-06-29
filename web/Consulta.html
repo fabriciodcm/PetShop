@@ -20,7 +20,8 @@ and open the template in the editor.
                     <h1>Formulário</h1>
                     Selecione o dono:
                     <br>
-                    <select name="idDono" id="dono">
+                    <select name="idDono" id="dono" onchange="preenchePets()" onselect="preenchePets()">
+                        <option value="" selected>Escolha um dono</option>
                     </select>
                     <br>
                     Selecione o Pet
@@ -53,7 +54,7 @@ and open the template in the editor.
     
             $(document).ready(function(){
                 preencheDonos();
-                preenchePets();
+                //preenchePets();
             });
     
             /* attach a submit handler to the form */
@@ -100,11 +101,15 @@ and open the template in the editor.
             }
         
             function preenchePets (){
-                var e = document.getElementById("dono");
-                var pet = e.options[e.selectedIndex].value;
-                alert(pet);
-                var url = url_base + "Pets.jsp?idDono=" + pet ;
-                
+                document.getElementById("pet").innerHTML = "";
+                //var e = document.getElementById("dono");
+                //var dono = e.options[e.selectedIndex].value();
+                var dono = $("#dono").val();
+                if(typeof(dono) == "undefined" || dono == "" ){
+                    return false;
+                }
+                var url = url_base + "Pets.jsp?idDono=" + document.getElementById("dono").options[document.getElementById("dono").selectedIndex].value; 
+                console.log(url);
                 if(window.XMLHttpRequest){
                     req =  new XMLHttpRequest();
                 }else if(window.ActiveXObject){
